@@ -1,0 +1,1 @@
+# Basic project structure to build a rest api with Java
