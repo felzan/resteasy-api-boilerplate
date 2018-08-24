@@ -9,13 +9,12 @@ import javax.ws.rs.core.Response;
 
 @Path("/hello")
 @Produces(MediaType.TEXT_PLAIN)
-public class Resource
-{
-    @GET
-    @Path("/{param}")
-    public Response printMessage(@PathParam("param") String msg)
-    {
-        String result = "Hello " + msg + "!";
-        return Response.status(200).entity(result).build();
-    }
+public class Resource {
+
+  @GET
+  @Path("/{param}")
+  public Response printMessage(@PathParam("param") final String msg) {
+    final String result = "Hello " + msg + "!";
+    return Response.status(200).entity(result).build();
+  }
 }
