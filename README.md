@@ -4,5 +4,6 @@
 
 - [X] Log requests
 - [ ] Rest Client
+- [ ] Error messages
 - [ ] JSON parser
 - [ ] Add Security filter
