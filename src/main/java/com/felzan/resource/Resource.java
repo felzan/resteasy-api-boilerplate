@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
-// @Produces(MediaType.APPLICATION_JSON)
 public class Resource {
 
   @GET
@@ -35,6 +34,7 @@ public class Resource {
 
   @POST
   @Path("/felzan")
+  @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response printMessage(@MatrixParam("id") final String id, @MatrixParam("name") final String name, final String payload) {
     final String result = id + ":" + name + "\n" + payload;
