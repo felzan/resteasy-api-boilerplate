@@ -1,5 +1,7 @@
 package com.felzan.resource;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.MatrixParam;
 import javax.ws.rs.POST;
@@ -11,18 +13,21 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
-@Produces(MediaType.TEXT_PLAIN)
+// @Produces(MediaType.APPLICATION_JSON)
 public class Resource {
 
   @GET
   @Path("{version}/hello")
-  public Response getHelloWorld(@PathParam("version") final String version) {
+  @Produces(MediaType.TEXT_PLAIN)
+  public Response getHelloWorld(
+      @DefaultValue("v1") @PathParam("version") final String version) {
     final String result = "Hello World!" + version;
     return Response.status(200).entity(result).build();
   }
 
   @GET
   @Path("v2/hello")
+  @Produces(MediaType.TEXT_PLAIN)
   public Response getHelloParam(@QueryParam("param") final String param) {
     final String result = "Hello " + param + "!";
     return Response.status(200).entity(result).build();
@@ -30,8 +35,9 @@ public class Resource {
 
   @POST
   @Path("/felzan")
-  public Response printMessage(@MatrixParam("id") final String id, @MatrixParam("name") final String name, final Object payload) {
-    final String result = id + ":" + name + payload;
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response printMessage(@MatrixParam("id") final String id, @MatrixParam("name") final String name, final String payload) {
+    final String result = id + ":" + name + "\n" + payload;
     return Response.status(200).entity(result).build();
   }
 }
