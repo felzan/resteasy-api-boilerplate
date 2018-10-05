@@ -10,17 +10,15 @@ stages:
 Test:
   stage: test
   script:
-    - echo "Testing"
     - mvn verify
 
 Build:
   stage: build
   script:
-    - echo "Buildind"
     - mvn package
 
 Deploy:
   stage: deploy
   script:
-    - echo "Deploying"
-    - scp /target/rest-api-1.0-SNAPSHOT.war  -i ~/projects/marketplace_homolog.pem -t ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments/rest-api-1.0-SNAPSHOT.war
+    - pwd    
+    - scp /target/rest-api-1.0-SNAPSHOT.war  -i /home/felzan/projects/marketplace_homolog.pem -t ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments/rest-api-1.0-SNAPSHOT.war
