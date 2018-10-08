@@ -24,4 +24,4 @@ Build:
 Deploy:
   stage: deploy
   script:
-    - scp /target/rest-api-1.0-SNAPSHOT.war  -i ~/marketplace_homolog.pem -t ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments/rest-api-1.0-SNAPSHOT.war
+    - scp -i /home/gitlab-runner/marketplace_homolog.pem target/rest-api-1.0-SNAPSHOT.war ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments
