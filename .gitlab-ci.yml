@@ -17,7 +17,9 @@ Build:
   stage: build
   script:
     - mvn package
-    # - scp /target/rest-api-1.0-SNAPSHOT.war  -i /home/felzan/projects/marketplace_homolog.pem -t ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments/rest-api-1.0-SNAPSHOT.war
+  artifacts:
+    paths:
+      - target/
 
 Deploy:
   stage: deploy
