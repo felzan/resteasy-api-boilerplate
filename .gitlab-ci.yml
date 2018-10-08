@@ -3,9 +3,9 @@ stages:
   - build
   # - deploy
 
-# cache:
-#   paths:
-#     - ~/.m2/
+cache:
+  paths:
+    - .m2/repository
 
 Test:
   stage: test
@@ -16,10 +16,9 @@ Build:
   stage: build
   script:
     - mvn package
-    - scp /target/rest-api-1.0-SNAPSHOT.war  -i /home/felzan/projects/marketplace_homolog.pem -t ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments/rest-api-1.0-SNAPSHOT.war
+    # - scp /target/rest-api-1.0-SNAPSHOT.war  -i /home/felzan/projects/marketplace_homolog.pem -t ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments/rest-api-1.0-SNAPSHOT.war
 
-# Deploy:
-#   stage: deploy
-#   script:
-#     - pwd    
-#     - scp /target/rest-api-1.0-SNAPSHOT.war  -i /home/felzan/projects/marketplace_homolog.pem -t ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments/rest-api-1.0-SNAPSHOT.war
+Deploy:
+  stage: deploy
+  script:
+    - scp /target/rest-api-1.0-SNAPSHOT.war  -i ~/marketplace_homolog.pem -t ec2-user@172.54.1.38:/opt/wildfly/standalone/deployments/rest-api-1.0-SNAPSHOT.war
