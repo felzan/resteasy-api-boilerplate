@@ -1,2 +1,27 @@
-maven_build:
-  script: mvn verify
+stages:
+  - test
+  - build
+  - deploy
+
+cache:
+  paths:
+    - .m2/repository
+
+Test:
+  stage: test
+  script:
+    - mvn test
+  allow_failure: true
+
+Build:
+  stage: build
+  script:
+    - mvn package
+  artifacts:
+    paths:
+      - target/
+
+Deploy:
+  stage: deploy
+  script:
+    - scp -i /home/gitlab-runner/marketplace_homolog.pem target/rest-api-1.0-SNAPSHOT.war ${USER}@${SERVER}:/opt/wildfly/standalone/deployments

@@ -19,9 +19,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 
-import com.google.gson.Gson;
-
-import org.apache.commons.io.IOUtils;
+import com.alibaba.fastjson.JSON;
 
 @Provider
 @Consumes(MediaType.APPLICATION_JSON)
@@ -39,14 +37,9 @@ public class LogFilter implements ContainerRequestFilter, ContainerResponseFilte
 	@Override
 	public String readFrom(Class type, Type genericType, Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap httpHeaders, InputStream entityStream) throws IOException, WebApplicationException {
-				String entity = new Gson().toJson(IOUtils.toString(entityStream, "UTF-8"), String.class);
-				entity = entity.replace("\\\"", "\"");
-				entity = entity.replaceAll("\\\\n", "");
-				entity = entity.replaceAll("\\\\t", "");
-				entity = entity.replace("\"{", "{");
-				entity = entity.replace("}\"", "}");
-				log.info("reqBody: " + entity);
-		return entity;
+				String json = JSON.parseObject(entityStream, String.class);
+				log.info("reqBody: " + json);
+		return json;
 	}
 	
 	@Override
@@ -63,14 +56,8 @@ public class LogFilter implements ContainerRequestFilter, ContainerResponseFilte
 		log.info(info);
     // Response Payload
 		if (res.getEntity() != null) {
-			String gsonRes = new Gson().toJson(res.getEntity(), String.class);
-			gsonRes = gsonRes.subSequence(1, gsonRes.length()).toString();
-			gsonRes = gsonRes.replace("\\\"", "\"");
-			gsonRes = gsonRes.replaceAll("\\\\n", "");
-			gsonRes = gsonRes.replaceAll("\\\\t", "");
-			gsonRes = gsonRes.replace("\"{", "{");
-			gsonRes = gsonRes.replace("}\"", "}");
-			log.info(" resBody:" + gsonRes);
+			String json = res.getEntity().toString();
+			log.info(" resBody:" + json);
 		}
 	}
 

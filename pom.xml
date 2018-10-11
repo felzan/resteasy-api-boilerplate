@@ -15,6 +15,7 @@
     <properties>
         <final-name>rest-api-${project.version}</final-name>
         <resteasy.version>3.6.1.Final</resteasy.version>
+        <fastjson.version>1.2.51</fastjson.version>
         <junit.version>4.11</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
@@ -33,12 +34,17 @@
 
     <dependencies>
 
-		<!-- GSON -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.3.1</version>
-		</dependency>
+        <!-- JSON parser -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-servlet-initializer</artifactId>
+            <version>${resteasy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
 
 		<!-- http://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
