@@ -3,6 +3,7 @@ package com.restapi.resource;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Encoded;
 import javax.ws.rs.GET;
@@ -37,12 +38,26 @@ public class Resource {
   @Path("rest")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response putRestClient(@Encoded @QueryParam("url") String url) throws Exception{
-    ResourceModel rm = new ResourceModel();
-    rm.setId("1");
-    rm.setName("felzan");
-    String json = JSON.toJSONString(rm);
-    return Response.status(200).entity(rc.put(url, json)).build();
+  public Response putRestClient(String payload,
+    @Encoded @QueryParam("url") String url) throws Exception{
+    return Response.status(200).entity(rc.put(url, payload)).build();
+  }
+
+  @POST
+  @Path("rest")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response postRestClient(String payload,
+    @Encoded @QueryParam("url") String url) throws Exception{
+    return Response.status(200).entity(rc.post(url, payload)).build();
+  }
+
+  @DELETE
+  @Path("rest")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response deleteRestClient(@Encoded @QueryParam("url") String url) throws Exception{
+    return Response.status(200).entity(rc.delete(url)).build();
   }
 
   @GET
