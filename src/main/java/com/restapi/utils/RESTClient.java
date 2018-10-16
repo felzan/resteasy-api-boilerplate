@@ -7,6 +7,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 
+import com.restapi.exception.GenericException;
+
 @Stateless
 public class RESTClient {
 
@@ -29,8 +31,12 @@ public class RESTClient {
     .request("application/json")
     .buildPut(Entity.json(payload));
     
-    String response = invocation.invoke(String.class);
-    System.out.println(response);
+    String response = null;
+    try {
+      response = invocation.invoke(String.class); 
+    } catch (Exception e) {
+      throw new GenericException(e.getMessage());
+    }
     return response;
   }
 }

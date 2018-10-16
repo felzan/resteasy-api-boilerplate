@@ -36,12 +36,12 @@ public class Resource {
   @PUT
   @Path("rest")
   @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
   public Response putRestClient(@Encoded @QueryParam("url") String url) throws Exception{
     ResourceModel rm = new ResourceModel();
     rm.setId("1");
     rm.setName("felzan");
     String json = JSON.toJSONString(rm);
-    System.out.println(json);
     return Response.status(200).entity(rc.put(url, json)).build();
   }
 

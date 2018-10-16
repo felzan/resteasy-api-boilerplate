@@ -12,6 +12,11 @@ public class GenericException extends Exception {
 		this.errorCode = errorCode;
 	}
 
+	public GenericException(final String message) {
+		super(message);
+		this.errorCode = 500;
+	}
+
 	public int getErrorCode() {
 		return errorCode;
 	}
