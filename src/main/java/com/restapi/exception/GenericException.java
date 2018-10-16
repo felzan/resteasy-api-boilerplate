@@ -1,9 +1,8 @@
 package com.restapi.exception;
 
-public class GenericException extends Exception {
+public class GenericException extends Exception{
 
 	private static final long serialVersionUID = 1L;
-
 	private int errorCode;
 	private int httpStatusCode = 500;
 
@@ -32,5 +31,4 @@ public class GenericException extends Exception {
 	public void setHttpStatusCode(final int httpStatusCode) {
 		this.httpStatusCode = httpStatusCode;
 	}
-
 }

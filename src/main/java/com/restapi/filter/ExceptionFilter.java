@@ -23,7 +23,7 @@ public class ExceptionFilter implements ExceptionMapper<GenericException> {
 		return Response.serverError()
 		.status(e.getHttpStatusCode())
 		.type(MediaType.APPLICATION_JSON)
-		.entity(JSON.toJSON(e))
+		.entity(JSON.toJSON("{\"errorCode\":" + e.getErrorCode() + ",\"message\":\"" + e.getMessage() + "\"}"))
 		.build();
 	}
 }
