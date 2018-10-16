@@ -1,4 +1,4 @@
-package com.felzan.resource;
+package com.restapi.resource;
 
 public class ResourceModel {
 
