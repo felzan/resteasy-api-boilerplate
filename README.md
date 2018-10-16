@@ -3,7 +3,7 @@
 ## TODO
 
 - [X] Log requests
-- [ ] Rest Client
-- [ ] Error messages
-- [ ] JSON parser
-- [ ] Add Security filter
+- [X] Rest Client
+- [X] Error messages
+- [X] JSON parser
+- [X] Add Security filter

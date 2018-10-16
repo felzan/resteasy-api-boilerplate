@@ -17,7 +17,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.alibaba.fastjson.JSON;
+import com.restapi.filter.Secured;
 import com.restapi.utils.RESTClient;
 
 @Path("/")
@@ -29,6 +29,7 @@ public class Resource {
 
   @GET
   @Path("rest")
+  @Secured
   @Produces(MediaType.APPLICATION_JSON)
   public Response getRestClient(@Encoded @QueryParam("url") String url) throws Exception{
     return Response.status(200).entity(rc.get(url)).build();

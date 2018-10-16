@@ -3,6 +3,6 @@ package com.restapi;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("felzan")
+@ApplicationPath("")
 public class RestApi extends Application {
 }
